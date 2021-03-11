@@ -1,0 +1,87 @@
+// ------  COLORS ------
+$color-header: #232222c7;
+
+$color-def-white: #eeeeee;
+$color-def-light: #f2f1e7;
+$color-def-medium: #f2f1e7d7;
+$color-def-dark: #d8d8d8;
+$color-def-black: rgba(43, 42, 42, 0.932);
+
+$color-chosen: #a2a192;
+$color-hover: #d6d4c5;
+
+$color-yellow: rgba(233, 218, 6, 0.952);
+
+$color-orange-bright: #d88004;
+$color-orange: #bf6f00;
+$color-orange-light: #bf6f0049;
+
+$grayscale-white: rgba(109, 107, 107, 0.877);
+$grayscale-light: rgba(54, 53, 53, 0.877);
+$grayscale-medium: rgba(41, 38, 38, 0.877);
+$grayscale-dark: rgba(36, 34, 34, 0.945);
+
+$color-massive-black: rgb(17, 17, 17);
+
+$color-popup-bg: rgb(238, 238, 238);
+$color-popup-bg-dark: rgb(26, 26, 26);
+// ------ /COLORS -------
+
+// ---------- breakpoints
+
+$breakpoint-ss-max: 420px;
+
+$breakpoint-sm-min: 576px;
+$breakpoint-xs-max: $breakpoint-sm-min - 1px;
+
+$breakpoint-md-min: 768px;
+$breakpoint-sm-max: $breakpoint-md-min - 1px;
+
+$breakpoint-lg-min: 992px;
+$breakpoint-md-max: $breakpoint-lg-min - 1px;
+
+$breakpoint-xl-min: 1200px;
+$breakpoint-lg-max: $breakpoint-xl-min - 1px;
+
+$breakpoint-xxl-min: 1400px;
+$breakpoint-xl-max: $breakpoint-xxl-min - 1px;
+//--------------------
+
+// ------  BASE ------
+
+$base: 4px;
+
+$p-top: $base * 6;
+$p-bottom: $base * 6;
+
+$p-top-small: $base * 3;
+$p-bottom-small: $base * 3;
+
+$section-margin: $base * 14;
+$section-margin-big: $base * 26;
+
+$transition: 0.3s all;
+$transition-medium: 0.9s all;
+$transition-long: 1.7s all;
+$transition-double: 2.3s all;
+// ------ /BASE -------
+
+// ------  FONTS ------
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-bold: 700;
+
+$fs-small: $base * 3;
+$fs-def: ($base * 4)-1;
+
+$fs-regular: $base * 4;
+$fs-regular-2: $base * 4.5;
+
+$fs-medium: $base * 5;
+
+$fs-big: $base * 6;
+$fs-large: $base * 9;
+
+// ------ /FONTS -------
