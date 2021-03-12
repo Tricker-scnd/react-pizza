@@ -1,6 +1,6 @@
 const initialState = {
   activeType: 1,
-  activeCategory: 'Все',
+  activeCategory: '',
 };
 
 const filters = (state = initialState, action) => {

@@ -1,3 +1,5 @@
+import { createUrl } from '../../helpers/filterUrlCreator';
+
 export const setItems = (payload) => ({
   type: 'SET_ITEMS',
   payload,
@@ -9,13 +11,33 @@ export const setLoader = (payload) => ({
 
 export const fetchItems = (url) => {
   return async (dispatch) => {
-     dispatch(setLoader(false))
+    fetch(url)
+      .then((data) => data.json())
+      .then((res) => {
+        dispatch(setItems(res));
+        dispatch(setLoader(false));
+      })
+      .catch((e) => {
+        throw new Error(e);
+      });
+  };
+};
 
-     fetch(url)
-     .then((data) => data.json())
-     .then((res) => {
-       dispatch(setItems(res))
-     });
+export const fetchFilterItems = () => {
+  return async (dispatch, getState) => {
+    dispatch(setLoader(true));
+    const { filters } = getState();
 
-  }
+    const url = createUrl({ type: filters.activeType, category: filters.activeCategory });
+
+    fetch(url)
+      .then((data) => data.json())
+      .then((res) => {
+        dispatch(setItems(res));
+        dispatch(setLoader(false));
+      })
+      .catch((e) => {
+        throw new Error(e);
+      });
+  };
 };

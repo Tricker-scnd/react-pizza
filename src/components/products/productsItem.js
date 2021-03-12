@@ -6,7 +6,10 @@ function ProductsItem({ info }) {
   const [activeSize, setActiveSize] = useState(0);
   const [activeDough, setActiveDough] = useState(0);
 
-  const { doughTypes } = info;
+  const doughTypes = [
+    { type: 1, label: 'Тонкое' },
+    { type: 2, label: 'Стандартное' },
+  ];
 
   const addPizza = () => {
     console.log(

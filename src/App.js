@@ -2,18 +2,20 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import OrderPage from './pages/OrderPage';
 import Home from './pages/Home';
-import {fetchItems} from './redux/actions/pizzaItems'
-import {useDispatch} from 'react-redux'
+import { fetchItems } from './redux/actions/pizzaItems';
+import { useDispatch } from 'react-redux';
+import {PIZZA_ITEMS_URL} from './helpers/filterUrlCreator'
+
+
 
 function App() {
-
-  const pizzaUrl = '/pizza.json';
-
-  const dispatch = useDispatch()
   
-  useEffect(()=>{
-    dispatch(fetchItems(pizzaUrl))
-  },[dispatch])
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchItems(PIZZA_ITEMS_URL));
+  }, [dispatch]);
+
 
   return (
     <>

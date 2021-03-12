@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Categories from './categories';
 import Types from './types';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-export default function Filter({ state, actions }) {
+const Filter = React.memo(function Filter({ state, actions }) {
   const [changeType, changeCategory] = actions;
 
   return (
@@ -19,14 +19,15 @@ export default function Filter({ state, actions }) {
           />
         ))}
       </div>
-      
-        <Types types={state.types} active={state.activeType} changeAction={changeType} />
-      
+
+      <Types types={state.types} active={state.activeType} changeAction={changeType} />
     </div>
   );
-}
+});
 
 Filter.propTypes = {
   state: PropTypes.object.isRequired,
-  actions: PropTypes.array.isRequired
-}
+  actions: PropTypes.array.isRequired,
+};
+
+export default Filter;
