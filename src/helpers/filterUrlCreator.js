@@ -14,8 +14,11 @@ export const createUrl = (params) => {
   //filter category
   const sortField_category = params.category;
 
-  newUrl=newUrl+`?_sort=${sortField_type.field}&_order=${sortField_type.order}${sortField_category?`&type_like=${sortField_category}`:``}`
-  console.log(newUrl);
+  newUrl =
+    newUrl +
+    `?_sort=${sortField_type.field}&_order=${sortField_type.order}${
+      sortField_category ? `&type_like=${sortField_category}` : ``
+    }`;
 
   return newUrl;
 };

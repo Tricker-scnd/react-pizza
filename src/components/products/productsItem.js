@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SizeInput, DoughInput } from './filter/inputs';
+import { addToCart } from '../../redux/actions/cart';
+import { useSelector } from 'react-redux';
 
-function ProductsItem({ info }) {
+function ProductsItem({ info, dispatch }) {
   const [activeSize, setActiveSize] = useState(0);
   const [activeDough, setActiveDough] = useState(0);
+
+  let countItems = useSelector((state) => state.cartItems.totalCount[info.id]);
+  if(!countItems)countItems=0
+
+  const scaledPrice = Number((info.price * info.priceScale[activeSize]).toFixed(2));
+  const currency = '$';
 
   const doughTypes = [
     { type: 1, label: 'Тонкое' },
@@ -12,15 +20,18 @@ function ProductsItem({ info }) {
   ];
 
   const addPizza = () => {
-    console.log(
-      'Pizza added, размер:',
-      info.size[activeSize],
-      ' тесто:',
-      doughTypes[activeDough].label,
+    dispatch(
+      addToCart({
+        id: info.id,
+        size: info.size[activeSize],
+        dough: doughTypes[activeDough].label,
+        price: scaledPrice,
+        name: info.name,
+        image: info.image,
+      }),
     );
   };
 
-  const currency = '$';
   return (
     <div className="product-list__item">
       <div className="product-list__item-img-wrapper">
@@ -55,11 +66,11 @@ function ProductsItem({ info }) {
         </div>
         <div className="product-list__item-actions">
           <div className="product__price">
-            <span>{info.price + ' ' + currency}</span>
+            <span>{scaledPrice + ' ' + currency}</span>
           </div>
           <button onClick={addPizza} className="btn product__add-item">
             <p>Добавить</p>
-            <span>0</span>
+            <span>{countItems}</span>
           </button>
         </div>
       </div>

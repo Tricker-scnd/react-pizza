@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Categories from './categories';
 import Types from './types';
 import PropTypes from 'prop-types';

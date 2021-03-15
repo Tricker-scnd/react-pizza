@@ -122,6 +122,17 @@ h5 {
     justify-content: space-between;
     align-items: center;
   }
+
+  .main-navigation > a:last-child {
+    min-width: $base * 42;
+    display: block;
+
+    @media (max-width: $breakpoint-lg-min) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
   .social-links {
     display: flex;
     margin-left: auto;
@@ -129,6 +140,10 @@ h5 {
 
     @media (max-width: $breakpoint-xs-max) {
       margin-right: $base;
+    }
+
+    @media (max-width: $breakpoint-ss-max) {
+      display: none;
     }
 
     &__item {
@@ -143,11 +158,13 @@ h5 {
 
   .cart-block {
     padding: $base * 2;
+    padding-left: $base * 4;
     background-color: $grayscale-light;
-    display: flex;
+    display: inline-flex;
     cursor: pointer;
     transition: $transition;
     align-items: center;
+    justify-content: center;
 
     &__summary {
       padding-right: $base * 2;
@@ -180,12 +197,15 @@ h5 {
 
   animation: showHeader 1s;
   .inner-wrapper {
-    background-color: $grayscale-medium;
+    background-color: $grayscale-ultra-white;
     padding: $base * 2 $base * 12;
 
     @media (max-width: $breakpoint-xs-max) {
       padding: $base * 2 $base * 4;
     }
+  }
+  .social-links a{
+    filter: brightness(160%);
   }
 }
 .section-header.header-fixed + .section-head-banner {
@@ -655,9 +675,9 @@ h5 {
 }
 
 .product-list__item {
-  transition: $transition-medium;
+  transition: $transition;
   opacity: 0;
-  transform: translateY(50%);
+  transform: translateY(20%);
 }
 
 .section-product-list.start-show {
@@ -748,6 +768,10 @@ h5 {
   &-container {
     padding: $base * 6 $base * 12;
     box-sizing: border-box;
+
+    @media (max-width: $breakpoint-ss-max) {
+      padding: $base * 5 $base * 7;
+    }
   }
 
   &-basket {
@@ -769,6 +793,9 @@ h5 {
 
       a {
         align-self: flex-start;
+        @media (max-width: $breakpoint-sm-max) {
+          align-self: center;
+        }
       }
       h4 {
         font-size: $fs-large;
@@ -780,6 +807,7 @@ h5 {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       margin-top: $base * 8;
       padding: $base * 5 0;
 
@@ -790,6 +818,10 @@ h5 {
         padding: 0;
         span {
           margin-right: $base * 2;
+        }
+
+        @media (max-width: $breakpoint-ss-max) {
+          font-size: $base * 5;
         }
       }
     }
@@ -825,6 +857,10 @@ h5 {
 
         width: $base * 70;
         justify-content: space-between;
+
+        @media (max-width: $breakpoint-ss-max) {
+          margin-top: $base * 4;
+        }
       }
       .item-price-block__counter {
         display: flex;
@@ -873,6 +909,11 @@ h5 {
         &--minus:hover {
           border: 2px solid $color-orange-bright;
         }
+
+        &--plus:active,
+        &--minus:active {
+          transform: scale(0.85);
+        }
       }
     }
 
@@ -900,6 +941,11 @@ h5 {
           box-sizing: border-box;
         }
       }
+
+      @media (max-width: $breakpoint-ss-max) {
+        border-top: 1px solid $grayscale-light;
+        padding-top: $base * 3;
+      }
     }
   }
 
@@ -914,6 +960,12 @@ h5 {
       border-radius: $base * 3;
       outline: none;
       cursor: pointer;
+
+      @media (max-width: $breakpoint-ss-max) {
+        padding: $base * 2 $base * 3 $base * 2 $base * 6;
+
+        font-size: $fs-small;
+      }
 
       &::before {
         content: '';
@@ -938,6 +990,12 @@ h5 {
       border-radius: $base * 3;
       outline: none;
       cursor: pointer;
+
+      @media (max-width: $breakpoint-ss-max) {
+        padding: $base * 2.5 $base * 4;
+
+        font-size: $fs-small;
+      }
     }
 
     &--go-back:hover {
@@ -966,6 +1024,12 @@ h5 {
     &:hover {
       filter: brightness(150%);
     }
+
+    @media (max-width: $breakpoint-ss-max) {
+      padding: $base * 2 $base * 3 $base * 2 $base * 6;
+
+      font-size: $fs-small;
+    }
   }
 }
 
@@ -987,5 +1051,23 @@ h5 {
   to {
     opacity: 1;
     top: 0px;
+  }
+}
+.cart-flashing {
+  animation: cartLighting 0.5s;
+}
+
+@keyframes cartLighting {
+  0% {
+    background-color: $grayscale-light;
+  }
+  30% {
+    background-color: $color-orange-bright;
+  }
+  60% {
+    background-color: $color-orange-bright;
+  }
+  100% {
+    background-color: $grayscale-light;
   }
 }

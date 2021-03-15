@@ -1,27 +1,50 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux'
+
+
+const calcCartItems = (arr) =>{
+  return arr.reduce((acc,val)=>acc+val[1],0)
+}
+
+
 
 function Header() {
-  const headRef = useRef(null);
+  const headRef =  useRef(null);
+  const cartRef =  useRef(null);
+  
+  let {totalPrice,totalCount} = useSelector(state => state.cartItems)
+  totalCount=calcCartItems(Object.entries(totalCount))
+
+
+
   useEffect(() => {
     headRef.current.classList.add('start-show');
 
     const headAppear = () => {
+      if(headRef.current)
       if (window.pageYOffset > 180) {
         headRef.current.classList.add('header-fixed');
       } else {
         headRef.current.classList.remove('header-fixed');
       }
     };
+
     window.addEventListener('scroll', headAppear);
 
     return () => {
       window.removeEventListener('scroll', headAppear);
     };
   }, []);
+  useEffect(()=>{
+    cartRef.current.classList.add('cart-flashing')
+    setTimeout(()=>{
+      cartRef.current.classList.remove('cart-flashing')
+    },600)
+  },[totalPrice])
 
   return (
-    <header ref={headRef} className="section-outer section-header ">
+    <header ref={headRef} className="section-outer section-header">
       <div className="inner-wrapper">
         <div className="main-navigation">
           <Link to="/">
@@ -74,11 +97,12 @@ function Header() {
             </a>
           </div>
           <Link to="/order">
-            <div className="cart-block">
-              <div className="cart-block__summary">0 $</div>
+            <div className="cart-block" ref={cartRef}>
+              <div className="cart-block__summary">{totalPrice} $</div>
               <div className="cart-block__count">
                 <span className="basket-icon"></span>
-                <span>0</span>
+                
+                <span>{totalCount}</span>
               </div>
             </div>
           </Link>

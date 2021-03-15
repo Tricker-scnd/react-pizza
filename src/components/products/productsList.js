@@ -10,8 +10,8 @@ function ProductsList() {
   const itemsRef = useRef(null);
   
   const dispatch = useDispatch();
-  const itemList = useSelector((state) => state.pizzaItems.items);
-  const itemsLoader = useSelector((state) => state.pizzaItems.loader);
+
+  const {items:itemList, loader:itemsLoader} = useSelector(state=>state.pizzaItems);
 
   const activeCategory = useSelector((state) => state.filters.activeCategory);
   const activeType = useSelector((state) => state.filters.activeType);
@@ -31,12 +31,12 @@ function ProductsList() {
   const changeType = useCallback((val) => {
     dispatch(setSortBy(val));
     dispatch(fetchFilterItems())
-  }, []);
+  }, [dispatch]);
 
   const changeCategory = useCallback((val) => {
     dispatch(setCategory(val));
     dispatch(fetchFilterItems())
-  }, []);
+  }, [dispatch]);
 
 
 
@@ -63,7 +63,7 @@ function ProductsList() {
           <div className="product-list-wrapper">
             {itemsLoader && <p className="items-loader">Загрузка...</p>}
             {itemList.map((p, i) => (
-              <ProductsItem info={p} key={'p' + i} />
+              <ProductsItem info={p} key={'p' + i} dispatch={dispatch} />
             ))}
             
             <div className="last-noop"></div>
