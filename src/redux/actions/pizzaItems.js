@@ -14,7 +14,8 @@ export const fetchItems = (url) => {
     fetch(url)
       .then((data) => data.json())
       .then((res) => {
-        dispatch(setItems(res));
+        dispatch(setItems(res.items)); //for  local
+        // dispatch(setItems(res)); //for json server
         dispatch(setLoader(false));
       })
       .catch((e) => {
@@ -33,7 +34,8 @@ export const fetchFilterItems = () => {
     fetch(url)
       .then((data) => data.json())
       .then((res) => {
-        dispatch(setItems(res));
+        dispatch(setItems(res.items)); //for  local
+        // dispatch(setItems(res)); //for json server
         dispatch(setLoader(false));
       })
       .catch((e) => {

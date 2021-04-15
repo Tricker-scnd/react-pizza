@@ -1,7 +1,11 @@
 import { filterParametrs } from './parametrs';
 
+const PIZZA_ITEMS_BASE_URL_LOCAL = 'http://localhost:3000/db.json';
+
 const PIZZA_ITEMS_BASE_URL = 'http://localhost:3001/items';
-export const PIZZA_ITEMS_URL = 'http://localhost:3001/items?_sort=popular&_order=desc';
+
+// export const PIZZA_ITEMS_URL = 'http://localhost:3001/items?_sort=popular&_order=desc'; // for json-server
+export const PIZZA_ITEMS_URL = PIZZA_ITEMS_BASE_URL_LOCAL;
 
 export const createUrl = (params) => {
   let newUrl = PIZZA_ITEMS_BASE_URL;
@@ -20,5 +24,7 @@ export const createUrl = (params) => {
       sortField_category ? `&type_like=${sortField_category}` : ``
     }`;
 
-  return newUrl;
+  // return newUrl; //for json server
+
+  return PIZZA_ITEMS_BASE_URL_LOCAL;
 };
